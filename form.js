@@ -133,3 +133,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 });
+
+id="dob-auto-format">
+document.querySelector('input[name="dob"]').addEventListener('input', function (e) {
+    let value = e.target.value.replace(/\D/g, ''); // remove non-numbers
+
+    if (value.length > 8) value = value.slice(0, 8);
+
+    let formatted = '';
+
+    if (value.length > 0) {
+        formatted += value.substring(0, 2);
+    }
+    if (value.length >= 3) {
+        formatted += '/' + value.substring(2, 4);
+    }
+    if (value.length >= 5) {
+        formatted += '/' + value.substring(4, 8);
+    }
+
+    e.target.value = formatted;
+});
